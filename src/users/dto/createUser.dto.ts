@@ -40,6 +40,6 @@ export class CreateUserDto {
     @IsOptional()
     public email: string
 
-    @IsArray()
-    public roles: string[]
+    @IsString()
+    public role: string
 }

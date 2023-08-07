@@ -1,7 +1,18 @@
-import { Body, Controller, Get, Req, Post, Put, Param, Delete, ValidationError, BadRequestException, ValidationPipe, UsePipes, } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Get,
+    Post,
+    Put,
+    Param,
+    Delete,
+    ValidationPipe,
+    UsePipes,
+} from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { CreateUserDto } from "./dto/createUser.dto";
 import { UpdateUserDto } from "./dto/updateUser.dto";
+import { User } from "@prisma/client";
 
 
 @Controller("users")
@@ -10,29 +21,27 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
     @Get()
-    public async getAll(@Body() request: Body): Promise<string> {
-        console.log(request.text);
+    public async getAll(): Promise<User[]> {
+
         return await this.usersService.getAll();
     }
 
     @Post()
     @UsePipes(ValidationPipe)
-    public async createUser(@Body() user: CreateUserDto): Promise<string> {
+    public async createUser(@Body() user: CreateUserDto): Promise<User> {
 
-        return await this.usersService.createUser();
+        return await this.usersService.createUser(user);
     }
 
     @Put(":id")
-    public async updateuser(@Param('id') id: string, @Body() user: UpdateUserDto): Promise<string> {
+    public async updateuser(@Param('id') id: string, @Body() user: UpdateUserDto): Promise<User> {
 
-        console.log(user);
-        return await this.usersService.updateUser(+id);
+        return await this.usersService.updateUser(+id, user);
     }
 
     @Delete(":id")
-    public async deleteUser(@Param('id') id: string): Promise<string> {
+    public async deleteUser(@Param('id') id: string): Promise<User> {
 
-        console.log(id);
         return await this.usersService.deleteUser(+id);
     }
 }
