@@ -1,6 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException, InternalServerErrorException } from "@nestjs/common";
 import { Reflector } from "@nestjs/core";
-import { Observable } from "rxjs";
 import { Request } from "express"
 import { IS_PUBLIC_KEY } from "src/common/decorators/public.decorator";
 import { JwtService } from "@nestjs/jwt";
