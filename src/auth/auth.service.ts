@@ -19,8 +19,10 @@ export class AuthService {
             throw new UnauthorizedException();
         }
 
+        const payload = { sub: user.id, username: user.user };
+
         return {
-            acess_token: await this.JstService.signAsync({ ...login })
+            acess_token: await this.JstService.signAsync(payload)
         };
     }
 }
