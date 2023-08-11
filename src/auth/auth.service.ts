@@ -19,8 +19,11 @@ export class AuthService {
             throw new UnauthorizedException();
         }
 
+        const newRefreshToken = await this.prismaService.refreshToken.create({data: {userId: user.id}});
+
         return {
-            acess_token: await this.JstService.signAsync({ ...login })
+            acess_token: await this.JstService.signAsync({ ...login }),
+            refresh_token: newRefreshToken.id
         };
     }
 }
