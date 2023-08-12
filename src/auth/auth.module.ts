@@ -6,12 +6,15 @@ import { AuthService } from "./auth.service";
 import { PrismaService } from "src/common/services/prisma.service";
 import { CommomModule } from "src/common/common.module";
 import { JwtModule } from "@nestjs/jwt";
+import { jwtSecret } from "./constants/jtw.secret";
 
 @Module({
     imports: [CommomModule, JwtModule.register({
         global: true,
-        secret: "qualquer valor serve",
-        signOptions: { expiresIn: "60s" }
+        secret: jwtSecret.secret,
+        signOptions: {
+            expiresIn: "60s",
+        }
     })],
     providers: [
         { provide: APP_GUARD, useClass: AuthGuard },

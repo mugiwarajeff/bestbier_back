@@ -21,8 +21,11 @@ export class AuthService {
 
         const newRefreshToken = await this.prismaService.refreshToken.create({data: {userId: user.id}});
 
+        
+        const payload = { sub: user.id, username: user.user };
+
         return {
-            acess_token: await this.JstService.signAsync({ ...login }),
+            acess_token: await this.JstService.signAsync(payload),
             refresh_token: newRefreshToken.id
         };
     }

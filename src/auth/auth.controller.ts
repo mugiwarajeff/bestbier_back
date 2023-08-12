@@ -11,7 +11,6 @@ export class AuthController {
     @Public()
     @Post()
     async signIn(@Body() login: CreateLoginDto): Promise<string> {
-        
         return this.authService.signIn(login);
     }
 }
