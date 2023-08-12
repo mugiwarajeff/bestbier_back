@@ -7,19 +7,21 @@ import { PrismaService } from "src/common/services/prisma.service";
 import { CommomModule } from "src/common/common.module";
 import { JwtModule } from "@nestjs/jwt";
 import { jwtSecret } from "./constants/jtw.secret";
+import { DateTimeService } from "src/common/services/dateTime.service";
 
 @Module({
     imports: [CommomModule, JwtModule.register({
         global: true,
         secret: jwtSecret.secret,
         signOptions: {
-            expiresIn: "60s",
+            expiresIn: "300s",
         }
-    })],
+    }),],
     providers: [
         { provide: APP_GUARD, useClass: AuthGuard },
         AuthService,
-        PrismaService
+        PrismaService,
+        DateTimeService
     ],
     controllers: [AuthController],
 
