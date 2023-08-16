@@ -34,8 +34,19 @@ model RefreshToken {
 }
 
 model Desk {
-  id          Int    @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   description String
+  Order       Order[]
 
   @@map("desk")
+}
+
+model Order {
+  id          Int    @id @default(autoincrement())
+  status      String
+  description String
+  deskId      Int
+  desk        Desk   @relation(fields: [deskId], references: [id])
+
+  @@map("order")
 }

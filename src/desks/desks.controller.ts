@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { Public } from "src/common/decorators/public.decorator";
 import { DeskService } from "./desks.service";
 import { Desk } from "@prisma/client";
 import { CreateDeskDto } from "./dtos/createDeskDto";
+import { UpdateDeskDto } from "./dtos/updateDeskDto";
 
 @Controller("desks")
 @Public()
@@ -12,25 +13,21 @@ export class DeskController {
 
     @Get()
     public async getDesks(): Promise<Desk[]> {
-
         return await this.deskService.getAll();
     }
 
     @Post()
     public async createDesk(@Body() body: CreateDeskDto): Promise<Desk> {
-
         return await this.deskService.create(body);
     }
 
     @Put(":id")
-    public async updateDesk(): Promise<any> {
-
-        return this.deskService.update();
+    public async updateDesk(@Body() body: UpdateDeskDto, @Param("id") id: string): Promise<Desk> {
+        return await this.deskService.update(body, +id);
     }
 
     @Delete(":id")
-    public async deleteDesk(): Promise<any> {
-
-        return this.deskService.delete();
+    public async deleteDesk(@Param("id") id: string): Promise<Desk> {
+        return await this.deskService.delete(+id);
     }
 }
