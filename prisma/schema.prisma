@@ -11,20 +11,31 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  user     String @unique
-  password String
-  name     String
-  cpf      String
-  telefone String
-  email    String @unique
-  role     String
-  refreshToken RefreshToken? 
+  id           Int           @id @default(autoincrement())
+  user         String        @unique
+  password     String
+  name         String
+  cpf          String
+  telefone     String
+  email        String        @unique
+  role         String
+  refreshToken RefreshToken?
+
+  @@map("user")
 }
 
 model RefreshToken {
-  id      String  @id @default(uuid())
-  expireIn Int    
-  userId  Int     @unique
-  user    User    @relation(fields: [userId], references: [id])
+  id       String @id @default(uuid())
+  expireIn Int
+  userId   Int    @unique
+  user     User   @relation(fields: [userId], references: [id])
+
+  @@map("refresh_token")
+}
+
+model Desk {
+  id          Int    @id @default(autoincrement())
+  description String
+
+  @@map("desk")
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { Public } from "src/common/decorators/public.decorator";
 import { CreateLoginDto } from "./dto/createLogin.dto";
 import { AuthService } from "./auth.service";
@@ -18,7 +18,7 @@ export class AuthController {
     @Public()
     @Post("/refresh")
     async refreshToken(@Body() refreshToken: RefreshTokenDto): Promise<string> {
-        
-        return  this.authService.refresh(refreshToken.refreshToken);
+
+        return this.authService.refresh(refreshToken.refreshToken);
     }
 }
