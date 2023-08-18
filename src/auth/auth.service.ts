@@ -46,8 +46,8 @@ export class AuthService {
     }
 
     private async verifyRefreshTokenExists(userId: number): Promise<boolean> {
-        const refreshToken = this.prismaService.refreshToken.findFirst({where: { userId: userId}});
-        if(refreshToken) {
+        const refreshToken = await this.prismaService.refreshToken.findFirst({where: { userId: userId}});
+        if(refreshToken!) {
             return true;
         }
         return false;
