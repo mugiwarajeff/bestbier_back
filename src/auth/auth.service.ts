@@ -38,10 +38,11 @@ export class AuthService {
             });
 
         const payload = { sub: user.id, username: user.user };
-
+        const { password, ...treatedUser } = user;
         return {
-            acess_token: await this.JstService.signAsync(payload),
-            refresh_token: newRefreshToken.id
+            user: treatedUser,
+            accessToken: await this.JstService.signAsync(payload),
+            refreshToken: newRefreshToken.id
         };
     }
 
