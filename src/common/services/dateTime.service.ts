@@ -9,7 +9,7 @@ export class DateTimeService {
 
         const today = dayjs();
 
-        const tomorrow = today.add(1, "day");
+        const tomorrow = today.add(1, "second");
 
         return tomorrow.unix();
     }
@@ -18,11 +18,11 @@ export class DateTimeService {
 
         const nowUnix = dayjs().unix();
 
-        if(nowUnix > expireUnix){
+        if (nowUnix > expireUnix) {
             return true;
         }
 
         return false;
-        
+
     }
 }   
