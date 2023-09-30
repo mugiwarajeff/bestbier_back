@@ -14,7 +14,7 @@ import { DateTimeService } from "src/common/services/dateTime.service";
         global: true,
         secret: jwtSecret.secret,
         signOptions: {
-            expiresIn: "10s",
+            expiresIn: "180s",
         }
     }),],
     providers: [

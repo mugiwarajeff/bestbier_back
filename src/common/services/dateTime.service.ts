@@ -9,7 +9,7 @@ export class DateTimeService {
 
         const today = dayjs();
 
-        const tomorrow = today.add(1, "second");
+        const tomorrow = today.add(3, "hour");
 
         return tomorrow.unix();
     }
