@@ -36,6 +36,7 @@ model RefreshToken {
 model Desk {
   id          Int     @id @default(autoincrement())
   description String
+  available   Boolean
   Order       Order[]
 
   @@map("desk")

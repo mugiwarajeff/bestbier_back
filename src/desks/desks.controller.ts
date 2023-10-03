@@ -27,6 +27,7 @@ export class DeskController {
 
     @Delete(":id")
     public async deleteDesk(@Param("id") id: string): Promise<Desk> {
+        console.log(id);
         return await this.deskService.delete(+id);
     }
 }

@@ -21,7 +21,8 @@ export class DeskService {
     };
 
     public async update(updateDeskDto: UpdateDeskDto, id: number): Promise<Desk> {
-        const updatedDesk = await this.prismaService.desk.update({ data: updateDeskDto, where: { id: id } });
+        
+        const updatedDesk = await this.prismaService.desk.update({ data: updateDeskDto, where: { id: id} });
 
         return updatedDesk;
     };
