@@ -9,7 +9,7 @@ import { ProductService } from "./products.service";
 @Public()
 export class ProductsController {
 
-    constructor(private readonly productsService: ProductService){}
+    constructor(private readonly productsService: ProductService) { }
 
     @Get()
     public async getAll(): Promise<Product[]> {
@@ -17,19 +17,19 @@ export class ProductsController {
     }
 
     @Post()
-    public async createProduct(@Body() body: CreateProductDto): Promise<Product>{
+    public async createProduct(@Body() body: CreateProductDto): Promise<Product> {
         return await this.productsService.createProduct(body)
     }
 
     @Put(":id")
     public async updateOrder(
-            @Body() body: UpdateProductDto, 
-            @Param("id") id: string): Promise<Product>{
+        @Body() body: UpdateProductDto,
+        @Param("id") id: string): Promise<Product> {
         return await this.productsService.updateProduct(body, +id);
     }
 
     @Delete(":id")
-    public async deleteOrder(@Param("id") id: string): Promise<Product>{
+    public async deleteOrder(@Param("id") id: string): Promise<Product> {
         return await this.productsService.deleteProduct(+id);
     }
 }

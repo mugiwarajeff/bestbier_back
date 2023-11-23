@@ -7,30 +7,34 @@ import { UpdateProductDto } from "./dtos/updateProductDto";
 @Injectable()
 export class ProductService {
 
-    constructor(private readonly prismaService: PrismaService){}
+    constructor(private readonly prismaService: PrismaService) { }
 
-    public async getAllProducts(): Promise<Product[]>{
+    public async getAllProducts(): Promise<Product[]> {
         return await this.prismaService.product.findMany({});
     }
 
-    public async createProduct(product: CreateProductDto): Promise<Product>{
-        const createdProduct: Product = await this.prismaService.product.create({data: product});
+    public async createProduct(product: CreateProductDto): Promise<Product> {
+        const createdProduct: Product = await this.prismaService.product.create({ data: product });
+
+        await this.prismaService.stock.create({ data: { productId: createdProduct.id, quantity: 0 } });
 
         return createdProduct;
     }
 
-    public async updateProduct(product: UpdateProductDto, id: number): Promise<Product>{
+    public async updateProduct(product: UpdateProductDto, id: number): Promise<Product> {
         const updatedProduct: Product = await this.prismaService.product.update({
             data: product,
-            where: {id: id}
+            where: { id: id }
         });
 
         return updatedProduct;
     }
 
-    public async deleteProduct(id: number): Promise<Product>{
+    public async deleteProduct(id: number): Promise<Product> {
+        await this.prismaService.stock.delete({ where: { productId: id } });
+
         const deletedProduct: Product = await this.prismaService.product.delete({
-            where: {id :id}
+            where: { id: id }
         });
 
         return deletedProduct;
