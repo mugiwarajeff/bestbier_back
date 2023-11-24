@@ -6,7 +6,6 @@ import { Product } from "@prisma/client";
 import { ProductService } from "./products.service";
 
 @Controller("products")
-@Public()
 export class ProductsController {
 
     constructor(private readonly productsService: ProductService) { }

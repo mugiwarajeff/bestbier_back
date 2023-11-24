@@ -7,7 +7,6 @@ import { Order } from "@prisma/client";
 
 
 @Controller("orders")
-@Public()
 export class OrdersController {
 
     constructor(private readonly ordersService: OrdersService) { }

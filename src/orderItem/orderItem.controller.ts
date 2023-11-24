@@ -6,7 +6,6 @@ import { CreateOrderItemDto } from "./dtos/CreateOrderItemDto";
 import { UpdateOrderItemDto } from "./dtos/UpdateOrderItemDto";
 
 @Controller("orderItem")
-@Public()
 export class OrderItemController {
 
     constructor(private readonly orderItemService: OrderItemService){}

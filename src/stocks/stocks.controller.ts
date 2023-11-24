@@ -6,7 +6,6 @@ import { Public } from "src/common/decorators/public.decorator";
 import { StocksService } from "./stocks.service";
 
 @Controller("stocks")
-@Public()
 export class StocksController {
 
     constructor(private readonly stockService: StocksService){}
