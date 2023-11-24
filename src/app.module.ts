@@ -7,6 +7,7 @@ import { DeskModule } from './desks/desks.module';
 import { OrdersModule } from './orders/orders.module';
 import { ProductsModule } from './products/products.module';
 import { StocksModule } from './stocks/stocks.module';
+import { OrderItemModule } from './orderItem/orderItem.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { StocksModule } from './stocks/stocks.module';
     DeskModule,
     OrdersModule,
     ProductsModule,
-    StocksModule
+    StocksModule,
+    OrderItemModule
   ],
 
 })

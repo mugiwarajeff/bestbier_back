@@ -6,6 +6,7 @@ import { CreateDeskDto } from "./dtos/createDeskDto";
 import { UpdateDeskDto } from "./dtos/updateDeskDto";
 
 @Controller("desks")
+@Public()
 export class DeskController {
 
     constructor(private readonly deskService: DeskService) { }

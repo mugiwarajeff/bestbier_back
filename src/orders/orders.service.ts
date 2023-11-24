@@ -10,7 +10,7 @@ export class OrdersService {
     constructor(private readonly prismaService: PrismaService) { }
 
     public async getAll(): Promise<Order[]> {
-        const orders = await this.prismaService.order.findMany();
+        const orders = await this.prismaService.order.findMany({include: {itens: {}}});
         return orders;
     }
 
