@@ -43,41 +43,44 @@ model Desk {
 }
 
 model Order {
-  id          Int    @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   status      String
   description String
   deskId      Int
-  desk        Desk   @relation(fields: [deskId], references: [id])
-  itens       OrderItem[] 
+  desk        Desk        @relation(fields: [deskId], references: [id])
+  itens       OrderItem[]
 
   @@map("order")
 }
 
 model OrderItem {
-  id  Int   @id @default(autoincrement())
-  quatity Int
-  orderId Int
-  productId  Int
-  Order Order @relation(fields: [orderId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  id        Int     @id @default(autoincrement())
+  quantity  Int
+  orderId   Int
+  productId Int
+  Order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
+
   @@map("orderItem")
 }
 
 model Product {
-  id  Int   @id @default(autoincrement())
-  name String
+  id          Int         @id @default(autoincrement())
+  name        String
   description String
-  category String
-  price Decimal
-  orderItens OrderItem[] 
-  stock Stock?
+  category    String
+  price       Decimal
+  orderItens  OrderItem[]
+  stock       Stock?
+
   @@map("product")
 }
 
 model Stock {
-  id  Int   @id @default(autoincrement())
-  productId Int @unique
-  quantity Int 
-  product Product @relation(fields: [productId], references: [id])
+  id        Int     @id @default(autoincrement())
+  productId Int     @unique
+  quantity  Int
+  product   Product @relation(fields: [productId], references: [id])
+
   @@map("stock")
 }
