@@ -7,6 +7,7 @@ import { Order } from "@prisma/client";
 
 
 @Controller("orders")
+@Public()
 export class OrdersController {
 
     constructor(private readonly ordersService: OrdersService) { }
@@ -16,9 +17,14 @@ export class OrdersController {
         return await this.ordersService.getAll();
     }
 
+    @Get(":id")
+    public async getOrderById(@Param("id") id: string): Promise<Order>{
+        return await this.ordersService.getOrderById(+id);
+    }
+
     @Post()
     public async createOrder(@Body() body: CreateOrderDto): Promise<Order> {
-
+        console.log(body);
         return await this.ordersService.createOrder(body);
     }
 

@@ -1,5 +1,5 @@
 
-import { IsNotEmpty, IsString } from "class-validator"
+import { IsInt, IsNotEmpty, IsString } from "class-validator"
 
 export class CreateOrderDto {
     @IsNotEmpty()
@@ -9,7 +9,8 @@ export class CreateOrderDto {
     @IsString()
     description: string
 
-    @IsNotEmpty() //precisa ja ter uma mesa criada
+    @IsNotEmpty()
+    @IsInt() //precisa ja ter uma mesa criada
     deskId: number
 
 }
